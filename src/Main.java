@@ -3,49 +3,50 @@ public class Main {
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
 
-        // Создаем две задачи
-        Task task1 = new Task("Clean the house", "Clean the living room and kitchen");
-        Task task2 = new Task("Buy groceries", "Buy milk, bread, and eggs");
-        taskManager.addTask(task1);
+        Task task = new Task("Wash Dish", "Wash dish in kitchen", Status.NEW);
+        Task task2 = new Task("Clean room", "Clean room with vacuumCleaner", Status.NEW);
+
+        Epic epic = new Epic("Fix up programm", "fixing program");
+        Epic epic2 = new Epic("Cook dish", "Cook breakfast");
+
+        Subtask subtask = new Subtask("check review", "check review", Status.NEW);
+        Subtask subtask2 = new Subtask("rework code", "rework code", Status.NEW);
+
+        Subtask subtask3 = new Subtask("Prepare food", "unfreeze meat", Status.NEW);
+
+       taskManager.addTask(task);
         taskManager.addTask(task2);
 
-        // Создаем эпик с двумя подзадачами
-        Epic epic1 = new Epic("Prepare for the trip", "Pack the bags and get everything ready");
-        taskManager.addEpic(epic1);
-        Subtask subtask1 = new Subtask("Pack clothes", "Pack summer clothes");
-        Subtask subtask2 = new Subtask("Pack electronics", "Pack charger and gadgets");
-        taskManager.addSubtask(subtask1, epic1);
-        taskManager.addSubtask(subtask2, epic1);
-
-        // Создаем эпик с одной подзадачей
-        Epic epic2 = new Epic("Birthday party", "Plan a birthday party");
+        taskManager.addEpic(epic);
         taskManager.addEpic(epic2);
-        Subtask subtask3 = new Subtask("Send invitations", "Send invitations to guests");
+
+        taskManager.addSubtask(subtask, epic);
+        taskManager.addSubtask(subtask2, epic);
+
         taskManager.addSubtask(subtask3, epic2);
 
-        // Распечатываем списки задач, эпиков и подзадач
+
+
+
+
         taskManager.printTasks();
+        System.out.println("----------------------------------------------------");
         taskManager.printEpics();
+        System.out.println("----------------------------------------------------");
         taskManager.printSubtasks();
+        System.out.println("----------------------------------------------------");
 
-        // Изменяем статусы и распечатываем
-        task1.setStatus(Status.IN_PROGRESS);
-        subtask1.setStatus(Status.DONE);
-        taskManager.updateEpicStatus(epic1);
+        subtask.setStatus(Status.DONE);
+        subtask2.setStatus(Status.DONE);
+        subtask3.setStatus(Status.IN_PROGRESS);
+        taskManager.updateSubtask(subtask);
+        taskManager.updateSubtask(subtask2);
+        taskManager.updateSubtask(subtask3);
 
-        System.out.println("\nAfter changing statuses:");
-        taskManager.printTasks();
+
+
+        System.out.println("After done some job \n\n");
         taskManager.printEpics();
-        taskManager.printSubtasks();
-
-        // Удаляем задачу и эпик
-        taskManager.deleteTaskById(task2.getCurrentId()); // Удаляем "Buy groceries"
-        taskManager.deleteEpicById(epic2.getCurrentId()); // Удаляем "Birthday party"
-
-        // Распечатываем списки после удаления
-        System.out.println("\nAfter deletion:");
-        taskManager.printTasks();
-        taskManager.printEpics();
-        taskManager.printSubtasks();
+        System.out.println("----------------------------------------------------");
     }
 }

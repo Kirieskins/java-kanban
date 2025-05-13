@@ -1,18 +1,15 @@
 import java.util.Objects;
 
 public class Task {
-    private String title;
-    private String description;
-    private static long id = 0;
-    private long currentId;
-    private Status status;
+    protected String title;
+    protected String description;
+    protected long currentId;
+    protected Status status;
 
-    public Task(String title, String description) {
+    public Task(String title, String description, Status status) {
         this.title = title;
         this.description = description;
-        id++;
-        currentId = id;
-        status = Status.NEW;
+        this.status = status;
     }
 
     public String getTitle() {
@@ -31,16 +28,14 @@ public class Task {
         this.description = description;
     }
 
-    public static long getId() { // чтобы узнать какой порядковый номер будет у следующего таска
-        return id;
-    }
-
 
     public long getCurrentId() {
         return currentId;
     }
 
-
+    public void setCurrentId(long currentId) {
+        this.currentId = currentId;
+    }
 
     public Status getStatus() {
         return status;
