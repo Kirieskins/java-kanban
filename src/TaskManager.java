@@ -159,6 +159,7 @@ public class TaskManager {
     public List<Subtask> getSubtasksByEpicId(long epicId) {
         Epic epic = getEpicById(epicId);
         return epic != null ? epic.getSubtasks() : new ArrayList<>();
+
     }
 
     // Обновление статуса эпика в зависимости от статусов подзадач
