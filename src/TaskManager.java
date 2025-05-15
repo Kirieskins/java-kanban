@@ -31,10 +31,8 @@ public class TaskManager {
         tasks.clear();
     }
     public void deleteAllEpics(){
-        for(Epic epic: epics.values()){
-            epic.clearSubtasks();
-        }
         epics.clear();
+        subtasks.clear();
     }
     public void deleteAllSubtasks(){
         for(Epic epic: epics.values()){
@@ -74,21 +72,16 @@ public class TaskManager {
     }
 
     // Добавляем подзадачу в эпик, которому она принадлежит
-    public long addSubtask(Subtask subtask, Epic epic) {
-        if (epic == null) {
-            throw new IllegalArgumentException("Epic cannot be null");
-        }
-
-        if (epics.containsKey(epic.getCurrentId())){
+    public long addSubtask(Subtask subtask) {
+        if (epics.containsKey(subtask.getEpicId())){
             subtask.setCurrentId(id++);
             int collectionSize = subtasks.size();
+            Epic epic = epics.get(subtask.getEpicId());
             epic.addSubtask(subtask);
-            subtask.setEpicId(epic.getCurrentId()); // фикс нужно добавить атрибут long epicId, чтобы был указатель связи подзадачи со своим эпиком
             subtasks.put(subtask.getCurrentId(), subtask);
 
-            // обновление статуса эпика
-            updateEpicStatus(epic);
             if (collectionSize < subtasks.size()){
+                updateEpicStatus(epic);
                 return subtask.getCurrentId();
             }else return -1;
 
@@ -119,7 +112,7 @@ public class TaskManager {
         if (subtasks.containsKey(subtask.getCurrentId())) {//проверяем есть ли такая подзадача, не существующую подзадачу не обновляем
             if (subtask.getEpicId() == subtasks.get(subtask.getCurrentId()).getEpicId()) {
                 // даляем старую версию подзадачи из эпика и добавляем новую
-                epics.get(subtask.getEpicId()).removeSubtask(subtask);
+                epics.get(subtask.getEpicId()).removeSubtaskById(subtask.getCurrentId());
                 epics.get(subtask.getEpicId()).addSubtask(subtask);
 
                 // Обновляем подзадачу в хранилище
@@ -146,10 +139,12 @@ public class TaskManager {
     }
     public void deleteSubtaskById(long id) {
        Subtask delSubtask = subtasks.get(id);
-        epics.get(delSubtask.getEpicId()).getSubtasks().remove(delSubtask);
-        subtasks.remove(id);
+       if (delSubtask != null) {
+           epics.get(delSubtask.getEpicId()).getSubtasks().remove(delSubtask);
+           subtasks.remove(id);
 
-        updateEpicStatus(epics.get(delSubtask.getEpicId()));
+           updateEpicStatus(epics.get(delSubtask.getEpicId()));
+       }
 
     }
 

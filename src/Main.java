@@ -7,23 +7,23 @@ public class Main {
         Task task2 = new Task("Clean room", "Clean room with vacuumCleaner", Status.NEW);
 
         Epic epic = new Epic("Fix up programm", "fixing program");
-        Epic epic2 = new Epic("Cook dish", "Cook breakfast");
+      //  Epic epic2 = new Epic("Cook dish", "Cook breakfast");
 
-        Subtask subtask = new Subtask("check review", "check review", Status.NEW);
-        Subtask subtask2 = new Subtask("rework code", "rework code", Status.NEW);
+        Subtask subtask = new Subtask("check review", "check review", Status.NEW, 3);
+        Subtask subtask2 = new Subtask("rework code", "rework code", Status.NEW, 3);
 
-        Subtask subtask3 = new Subtask("Prepare food", "unfreeze meat", Status.NEW);
+      //  Subtask subtask3 = new Subtask("Prepare food", "unfreeze meat", Status.NEW);
 
        taskManager.addTask(task);
         taskManager.addTask(task2);
 
         taskManager.addEpic(epic);
-        taskManager.addEpic(epic2);
+       // taskManager.addEpic(epic2);
 
-        taskManager.addSubtask(subtask, epic);
-        taskManager.addSubtask(subtask2, epic);
+        taskManager.addSubtask(subtask);
+        taskManager.addSubtask(subtask2);
 
-        taskManager.addSubtask(subtask3, epic2);
+        //taskManager.addSubtask(subtask3, epic2);
 
 
 
@@ -36,12 +36,14 @@ public class Main {
         taskManager.printSubtasks();
         System.out.println("----------------------------------------------------");
 
-        subtask.setStatus(Status.DONE);
-        subtask2.setStatus(Status.DONE);
-        subtask3.setStatus(Status.IN_PROGRESS);
+        subtask.setStatus(Status.IN_PROGRESS);
+        subtask.setDescription("TEST REVIEW");
+        subtask2.setStatus(Status.IN_PROGRESS);
+
+       // subtask3.setStatus(Status.IN_PROGRESS);
         taskManager.updateSubtask(subtask);
         taskManager.updateSubtask(subtask2);
-        taskManager.updateSubtask(subtask3);
+      //  taskManager.updateSubtask(subtask3);
 
 
 
