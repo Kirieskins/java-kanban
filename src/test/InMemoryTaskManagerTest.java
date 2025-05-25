@@ -32,6 +32,7 @@ class InMemoryTaskManagerTest {
         assertNotEquals(-1, epicId);
         assertEquals(epic, taskManager.getEpicById(epicId));
     }
+
     @Test
     void shouldBePositiveAddSubtask() {
         Epic epic = new Epic("Test Epic", "Description of test epic");
