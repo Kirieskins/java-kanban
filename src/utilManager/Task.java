@@ -1,3 +1,5 @@
+package utilManager;
+
 import java.util.Objects;
 
 public class Task {
@@ -53,6 +55,9 @@ public class Task {
         return currentId == task.currentId && Objects.equals(title, task.title) && Objects.equals(description, task.description) && status == task.status;
     }
 
+    public Task cloneTask() {
+        return new Task(this.title, this.description, this.status);
+    }
     @Override
     public int hashCode() {
         return Objects.hash(title, description, currentId, status);
@@ -60,7 +65,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "util.Task{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", currentId=" + currentId +
