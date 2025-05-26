@@ -12,9 +12,6 @@ public class InMemoryHistoryManager implements HistoryManager {
      * */
     private static final int HISTORY_MAX_SIZE = 10;
     private List<Task> historyList = new ArrayList<>(10);
-    /**
-     * При вызовах методов getTaskById(), getSubtaskById(), getEpicsById() вызывается метод -> addToHistory()
-     */
 
 
     @Override
