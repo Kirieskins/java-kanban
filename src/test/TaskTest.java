@@ -2,12 +2,9 @@ package test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utilManager.Epic;
-import utilManager.Status;
-import utilManager.Subtask;
-import utilManager.Task;
-
-import static org.junit.jupiter.api.Assertions.*;
+import tasks.Status;
+import tasks.Subtask;
+import tasks.Task;
 
 class TaskTest {
     @Test

@@ -1,8 +1,14 @@
-package utilManager;
+package managers;
+
+import tasks.Epic;
+import tasks.Status;
+import tasks.Subtask;
+import tasks.Task;
+import tasks.*;
 
 import java.util.List;
 
-public interface TaskManager extends HistoryManager{
+public interface TaskManager{
 
     // a. Получение списка всех задач.
      List<Task> getAllTasks();
@@ -67,8 +73,5 @@ public interface TaskManager extends HistoryManager{
             }
         }
     }
-
-    // новые методы ->
-
-
+    List<Task> getHistory();
 }

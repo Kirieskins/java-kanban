@@ -1,8 +1,8 @@
 package test;
 
 import org.junit.jupiter.api.Test;
-import utilManager.Managers;
-import utilManager.TaskManager;
+import managers.Managers;
+import managers.TaskManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 

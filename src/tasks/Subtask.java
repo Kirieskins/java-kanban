@@ -1,6 +1,6 @@
-package utilManager;
+package tasks;
 
-public class Subtask extends Task{
+public class Subtask extends Task {
     private long epicId;
 
     public Subtask(String title, String description, Status status, long epicId) {

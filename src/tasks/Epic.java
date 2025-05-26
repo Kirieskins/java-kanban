@@ -1,10 +1,10 @@
-package utilManager;
+package tasks;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class Epic extends Task{
+
+public class Epic extends Task {
     private List<Subtask> subtasks;
     public Epic(String title, String description) {
         super(title, description, Status.NEW);

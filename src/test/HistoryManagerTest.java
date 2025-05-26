@@ -2,10 +2,10 @@ package test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utilManager.HistoryManager;
-import utilManager.Managers;
-import utilManager.Status;
-import utilManager.Task;
+import managers.HistoryManager;
+import managers.Managers;
+import tasks.Status;
+import tasks.Task;
 
 import java.util.List;
 

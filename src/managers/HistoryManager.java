@@ -1,4 +1,6 @@
-package utilManager;
+package managers;
+
+import tasks.*;
 
 import java.util.List;
 

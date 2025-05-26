@@ -1,6 +1,10 @@
-package pachageForUser;
+import managers.Managers;
+import managers.TaskManager;
+import tasks.Epic;
+import tasks.Status;
+import tasks.Subtask;
+import tasks.Task;
 
-import utilManager.*;
 
 public class Main {
 
@@ -30,10 +34,6 @@ public class Main {
 
         printAllTasks(manager);
 
-
-
-
-
     }
 
     private static void printAllTasks(TaskManager manager) {
@@ -58,5 +58,6 @@ public class Main {
         for (Task task : manager.getHistory()) {
             System.out.println(task);
         }
+        System.out.println("the end");
     }
 }

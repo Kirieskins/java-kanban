@@ -1,35 +1,30 @@
-package utilManager;
+package managers;
+
+import tasks.Epic;
+import tasks.Subtask;
+import tasks.Task;
+import tasks.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
-    private HashMap<Long, Task> tasks; // для хранения задач по id
-    private HashMap<Long, Epic> epics; // для хранения эпиков по id
-    private HashMap<Long, Subtask> subtasks; //  для хранения сабтасков по id
+    private Map<Long, Task> tasks; // для хранения задач по id
+    private Map<Long, Epic> epics; // для хранения эпиков по id
+    private Map<Long, Subtask> subtasks; //  для хранения сабтасков по id
 
     private HistoryManager historyManager = Managers.getDefaultHistory();
 
     private int id = 1;
 
-    // Вероятно, с появлением класса Managers, который сам будет возвращать нужный объект нет нужны в public
-    // конструкторе ? В таком случае, наверное, в другом пакете должно происходить создание пользователей и объектов ->
-    // можно сделать package-private static метод чтобы только класс util.Managers мог его использовать, а пользователь напрямую
-    // не мог создавать конкретный экземпляр через (= new) ?
-    private InMemoryTaskManager() {
+    public InMemoryTaskManager() {
         tasks = new HashMap<>();
         epics = new HashMap<>();
         subtasks = new HashMap<>();
     }
 
-    /**
-     * Доступ(условно) только для util.Managers
-     * */
-
-    static InMemoryTaskManager create(){
-        return new InMemoryTaskManager();
-    }
 
     // a. Получение списка всех задач.
     @Override
@@ -215,14 +210,6 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.println(subtask);
         }
     }
-
-
-
-    @Override
-    public boolean add(Task task) {
-        return historyManager.add(task);
-    }
-
     @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
